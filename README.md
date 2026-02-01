@@ -17,11 +17,11 @@ Download the pretrained teacher models to the save/models directory:
 ```
 sh scripts/fetch_pretrained_teachers.sh
 ```
-2. Run Distillation (LDRLD)
+2. Run Distillation (LDRLD). 
 To reproduce the results of LDRLD on CIFAR-100, use the following command.
 Example: ResNet32x4 (Teacher) -> ResNet8x4 (Student)
 ```
-CUDA_VISIBLE_DEVICES=1 python train_student.py --path_t ./save/models/resnet32x4_vanilla/ckpt_epoch_240.pth --distill ldrld --model_s resnet8x4 -r 1 -b 7.0 -a 10.5 --trial 1 --kd_T 4
+CUDA_VISIBLE_DEVICES=1 python train_student.py --path_t ./save/models/resnet32x4_vanilla/ckpt_epoch_240.pth --distill ldrld --model_s resnet8x4 -r 1.0 -b 7.0 -a 10.5 --trial 1 --kd_T 4
 ```
   where the flags are explained as:
 
@@ -33,11 +33,13 @@ CUDA_VISIBLE_DEVICES=1 python train_student.py --path_t ./save/models/resnet32x4
 
     -r: the weight of the cross-entropy loss 
 
-    -a: the weight of the KD loss
+    -a: the weight of the local dense logit relation distillation loss
 
-    -b: the weight of other distillation losses, default: `None`
+    -b: the weight of non-target distillation loss
 
-    --trial: specify the experimental id to differentiate between multiple runs.
+    --trial: specify the experimental id to differentiate between multiple runs
+    
+    --kd: the temperature coefficient
 
 ## Citation
 If you find this repo useful for your research, please consider citing the paper:
