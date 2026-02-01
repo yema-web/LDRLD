@@ -39,7 +39,7 @@ CUDA_VISIBLE_DEVICES=1 python train_student.py --path_t ./save/models/resnet32x4
 
     --trial: specify the experimental id to differentiate between multiple runs
     
-    --kd: the temperature coefficient
+    --kd_T: the temperature coefficient
 
 ## Citation
 If you find this repo useful for your research, please consider citing the paper:
